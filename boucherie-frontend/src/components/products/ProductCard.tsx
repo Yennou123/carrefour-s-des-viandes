@@ -192,7 +192,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {isAdding || loading ? (
               <motion.div 
                 animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" as any }}
                 className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" 
               />
             ) : (
