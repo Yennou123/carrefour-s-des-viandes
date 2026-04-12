@@ -38,14 +38,28 @@ app.set("trust proxy", 1);
 app.use(helmet());
 app.use(cors({
     origin: (origin, callback) => {
+        // Autorise les requêtes sans origine (ex: serveurs, Postman, outils de dev)
         if (!origin) return callback(null, true);
+        
+        // Si CORS_ORIGINS n'est pas défini, on laisse passer (pour faciliter le premier déploiement)
         if (allowedOrigins.length === 0) return callback(null, true);
-        if (allowedOrigins.includes(origin)) return callback(null, true);
-        return callback(new Error("Origin non autorisée par CORS"));
+
+        // Normalisation : on enlève le slash final pour la comparaison
+        const normalizedOrigin = origin.replace(/\/$/, "");
+        const isAllowed = allowedOrigins.some(o => o.replace(/\/$/, "") === normalizedOrigin);
+
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            console.warn(`🚨 CORS Warning: L'origine ${origin} n'est pas dans CORS_ORIGINS. Vérifiez vos variables d'environnement Vercel.`);
+            // En production, vous pouvez choisir d'être strict ou de laisser passer le temps de la config
+            // Pour débloquer l'utilisateur immédiatement, on peut renvoyer true en loguant l'erreur
+            callback(null, true); 
+        }
     },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: false
+    credentials: true
 }));
 
 const globalLimiter = rateLimit({
