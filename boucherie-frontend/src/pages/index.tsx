@@ -9,15 +9,9 @@ import CategoriesSection from "@/components/CategoriesSection";
 import StatsSection from "@/components/StatsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { Loader, Sparkles, Percent, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useSearch } from "@/context/SearchContext";
 import Link from "next/link";
-
-interface Category {
-  id: string;
-  name: string;
-  image: string;
-}
 
 /* -----------------------------------------------------------
    SECTION : PRODUITS (Identique au design original)

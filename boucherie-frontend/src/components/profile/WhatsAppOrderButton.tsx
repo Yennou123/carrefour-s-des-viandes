@@ -47,7 +47,7 @@ const WhatsAppOrderButton: React.FC<WhatsAppOrderButtonProps> = ({
     <div className="mt-8 mb-6 bg-[#25D366]/10 p-6 rounded-[2rem] border border-[#25D366]/20 flex flex-col md:flex-row items-center justify-between gap-6">
       <div>
         <h4 className="text-stone-900 font-black text-lg flex items-center gap-2">
-          Une question sur l'avancée de votre préparation ?
+          Une question sur l&apos;avancée de votre préparation ?
         </h4>
         <p className="text-stone-600 font-medium mt-1">
           Dialoguez en direct avec nos artisans sur WhatsApp.

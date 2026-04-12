@@ -6,19 +6,12 @@ import AdminSidebar from "./AdminSidebar";
 import api from "@/lib/axios";
 import { useSearch } from "@/context/SearchContext";
 
-export default function HeaderAdmin() {
+export default function HeaderAdmin({ isOpen, onToggle }: { isOpen: boolean, onToggle: () => void }) {
   const { logout, getToken } = useAuth();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
 
   // ✅ Récupération du contexte ici
   const { searchQuery, setSearchQuery } = useSearch();
-
-  useEffect(() => {
-    if (window.innerWidth >= 768) {
-      setSidebarOpen(true);
-    }
-  }, []);
 
   const fetchUnreadCount = async () => {
     try {
@@ -44,19 +37,13 @@ export default function HeaderAdmin() {
   }, []);
 
   return (
-    <>
-      <Header
-        toggleSidebar={() => setSidebarOpen((o) => !o)}
-        logout={logout}
-        unreadCount={unreadCount}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-      <AdminSidebar
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
-    </>
+    <Header
+      toggleSidebar={onToggle}
+      logout={logout}
+      unreadCount={unreadCount}
+      searchQuery={searchQuery}
+      setSearchQuery={setSearchQuery}
+    />
   );
 }
 

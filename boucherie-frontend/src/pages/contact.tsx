@@ -68,7 +68,7 @@ const ContactPage: React.FC = () => {
             Parlons de vos envies
           </h1>
           <p className="text-lg text-stone-500 max-w-2xl mx-auto font-medium">
-            Une question sur une pièce de viande ou besoin d'un conseil ? Notre équipe est à votre écoute.
+            Une question sur une pièce de viande ou besoin d&apos;un conseil ? Notre équipe est à votre écoute.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-stone-400 uppercase tracking-widest">Adresse</h4>
-                    <p className="mt-1 font-medium italic">Carrefour'S des Viandes<br/>Ouagadougou, Burkina Faso</p>
+                    <p className="mt-1 font-medium italic">Carrefour&apos;S des Viandes<br/>Ouagadougou, Burkina Faso</p>
                   </div>
                 </div>
 
@@ -115,7 +115,7 @@ const ContactPage: React.FC = () => {
               <div className="mt-12 pt-8 border-t border-stone-800">
                 <div className="flex items-center gap-3 text-red-500 mb-4">
                   <Clock3 size={20}/> 
-                  <span className="font-bold uppercase text-xs tracking-tighter">Horaires d'ouverture</span>
+                  <span className="font-bold uppercase text-xs tracking-tighter">Horaires d&apos;ouverture</span>
                 </div>
                 <p className="text-stone-400 text-sm leading-relaxed">
                   Mardi - Samedi : <span className="text-white">08h00 - 19h00</span><br/>

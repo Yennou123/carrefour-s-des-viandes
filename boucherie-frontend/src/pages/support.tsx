@@ -28,7 +28,7 @@ const SupportPage: React.FC = () => {
 
   // --- GESTION DES DONNÉES AVEC SWR ---
   // SWR ne lancera la requête que si isAuthenticated est vrai
-  const { data: tickets, error: loadError, mutate, isLoading: loadingTickets } = useSWR(
+  const { data: tickets, mutate, isLoading: loadingTickets } = useSWR(
     isAuthenticated ? `${API_SUPPORT_URL}/my-tickets` : null,
     fetcher,
     {
