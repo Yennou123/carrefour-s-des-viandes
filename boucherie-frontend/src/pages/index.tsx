@@ -30,7 +30,7 @@ const ProductSection: React.FC<{
   icon: React.ReactNode;
   accentColor: string;
 }> = ({ title, subtitle, products, loading, icon, accentColor }) => {
-  const containerVariants: Variants = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -39,16 +39,16 @@ const ProductSection: React.FC<{
         delayChildren: 0.2
       }
     }
-  };
+  } as const;
 
-  const itemVariants: Variants = {
+  const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
       y: 0, 
       transition: { duration: 0.8, ease: "easeOut" } 
     }
-  };
+  } as const;
 
   return (
     <section className="py-20 border-b border-stone-100 last:border-0 overflow-hidden">

@@ -32,7 +32,7 @@ const containerVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.1, delayChildren: 0.3 },
   },
-};
+} as const;
 
 const itemVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -41,7 +41,7 @@ const itemVariants = {
     y: 0, 
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
   },
-};
+} as const;
 
 const HeroSlider: React.FC = () => {
   const [current, setCurrent] = useState(0);
