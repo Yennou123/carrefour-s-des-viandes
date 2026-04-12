@@ -47,7 +47,7 @@ const TestimonialsSection: React.FC = () => {
       opacity: 1,
       transition: { staggerChildren: 0.2 },
     },
-  } as const;
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.9, y: 30 },
@@ -55,9 +55,9 @@ const TestimonialsSection: React.FC = () => {
       opacity: 1, 
       scale: 1, 
       y: 0, 
-      transition: { duration: 0.8, ease: "easeOut" } 
+      transition: { duration: 0.8, ease: "easeOut" as any } 
     },
-  } as const;
+  };
 
   return (
     <section className="relative py-24 overflow-hidden bg-stone-50">

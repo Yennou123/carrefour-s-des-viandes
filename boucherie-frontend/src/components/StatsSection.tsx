@@ -34,7 +34,7 @@ const AnimatedNumber = ({ value, start }: { value: number; start: boolean }) => 
     if (start) {
       const controls = animate(count, value, {
         duration: 2.5,
-        ease: "easeOut", 
+        ease: "easeOut" as any, 
       });
       return controls.stop;
     }

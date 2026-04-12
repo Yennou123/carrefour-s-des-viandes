@@ -39,16 +39,16 @@ const ProductSection: React.FC<{
         delayChildren: 0.2
       }
     }
-  } as const;
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.8, ease: "easeOut" } 
+      transition: { duration: 0.8, ease: "easeOut" as any } 
     }
-  } as const;
+  };
 
   return (
     <section className="py-20 border-b border-stone-100 last:border-0 overflow-hidden">

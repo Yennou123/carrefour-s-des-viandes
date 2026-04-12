@@ -18,14 +18,14 @@ export default function App({ Component, pageProps, router }: any) {
     show: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.4, ease: "easeOut" } 
+      transition: { duration: 0.4, ease: "easeOut" as any } 
     },
     exit: { 
       opacity: 0, 
       y: -15, 
-      transition: { duration: 0.3, ease: "easeIn" } 
+      transition: { duration: 0.3, ease: "easeIn" as any } 
     }
-  } as const;
+  };
 
   return (
     <GoogleOAuthProvider clientId={googleClientId}>
