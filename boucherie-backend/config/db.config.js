@@ -1,4 +1,5 @@
 // config/db.config.js
+require('pg'); // Force le chargement du module pour Vercel/Serverless
 const { Sequelize } = require('sequelize');
 require('dotenv').config(); // Pour charger les variables d'environnement
 
