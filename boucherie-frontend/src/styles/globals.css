@@ -1,0 +1,55 @@
+/* src/styles/globals.css (NOUVELLE DÉFINITION DE THÈME) */
+
+/* Import des polices depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@import "leaflet/dist/leaflet.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+@import "tailwindcss";
+
+
+/* 🚨 DÉFINITION DES VARIABLES CSS POUR LE THÈME BOUCHERIE 🚨 */
+:root {
+  --primary-red: #8A0303;      /* Rouge Bourgogne */
+  --accent-gold: #B8860B;      /* Or/Cuivre */
+  --text-dark: #333333;        /* Gris Charbon */
+  --bg-cream: #FAFAF0;         /* Fond Crème */
+
+  /* Variables par défaut mises à jour */
+  --background: var(--bg-cream);
+  --foreground: var(--primary-red);
+  
+  /* Polices (si non gérées par Geist) */
+  --font-title: 'Lora', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+/* @theme inline n'est pas standard. Si vous n'utilisez pas de librairie spécifique,
+   nous pouvons le retirer ou le laisser vide. Nous nous basons sur l'intégration Tailwind standard. */
+/* @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans); 
+  --font-mono: var(--font-geist-mono);
+} */
+
+/* Supprimons le bloc @media car nous n'aurons pas de mode sombre pour ce thème */
+/* @media (prefers-color-scheme: dark) { ... } */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  /* Utilise les variables définies ci-dessus */
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
