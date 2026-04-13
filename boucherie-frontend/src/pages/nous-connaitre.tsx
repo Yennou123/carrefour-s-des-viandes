@@ -86,13 +86,13 @@ const AboutPage: React.FC = () => {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-800 text-white text-[10px] font-bold uppercase tracking-widest mb-6">
               <Award size={14} />
-              Boucherie d'Excellence depuis 2018
+              Boucherie d&apos;Excellence depuis 2018
             </div>
             <h1 className="text-5xl md:text-7xl font-serif font-black text-white leading-[1.1] mb-8">
-              L'excellence <span className="text-red-600 italic">artisanale</span> au service de votre table.
+              L&apos;excellence <span className="text-red-600 italic">artisanale</span> au service de votre table.
             </h1>
             <p className="text-xl text-stone-300 font-medium leading-relaxed max-w-xl">
-              Bienvenue chez Carrefour'S des Viandes, où chaque pièce raconte une histoire de passion, de terroir et de savoir-faire.
+              Bienvenue chez Carrefour&apos;S des Viandes, où chaque pièce raconte une histoire de passion, de terroir et de savoir-faire.
             </p>
           </motion.div>
         </div>
@@ -216,7 +216,7 @@ const AboutPage: React.FC = () => {
           
           <div className="mt-20 pt-20 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-10">
             <div>
-              <h3 className="text-3xl font-serif font-bold italic mb-2">Prêt à goûter l'excellence ?</h3>
+              <h3 className="text-3xl font-serif font-bold italic mb-2">Prêt à goûter l&apos;excellence ?</h3>
               <p className="text-white/60">Explorez notre catalogue et commandez en ligne.</p>
             </div>
             <Link 
