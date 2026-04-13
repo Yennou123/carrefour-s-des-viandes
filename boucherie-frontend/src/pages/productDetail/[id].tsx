@@ -5,6 +5,7 @@ import { ShoppingCart, Star, StarHalf, User, ChevronLeft, CheckCircle, Plus, Min
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import api from '@/lib/axios';
+import SEO from '@/components/SEO';
 
 // --- Types ---
 interface Product {
@@ -123,6 +124,11 @@ const ProductDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] pb-20">
+      <SEO 
+        title={product.name} 
+        description={product.description} 
+        image={product.image_url}
+      />
       {/* Header / Nav */}
       <div className="max-w-7xl mx-auto px-4 pt-8">
         <Link href="/catalogue" className="inline-flex items-center text-stone-500 hover:text-red-800 transition-colors group">

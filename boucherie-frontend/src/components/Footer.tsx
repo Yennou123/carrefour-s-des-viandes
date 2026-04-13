@@ -31,18 +31,18 @@ const Footer: React.FC = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 } 
+      transition: { staggerChildren: 0.15 }
     }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6, ease: "easeOut" as any } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" as any }
     }
   };
 
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
 
         {/* --- Section Principale --- */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
               &quot;L&apos;excellence du fait maison et la passion du terroir, livrées directement de notre atelier à votre table.&quot;
             </p>
             <div className="flex space-x-4 pt-2">
-              <Link href="https://facebook.com" className="p-2 bg-stone-900 rounded-full hover:text-red-500 hover:bg-white transition-all duration-300 transform hover:scale-110">
+              <Link href="https://web.facebook.com/people/CarrefourS-Des-Viandes/61570945933583" className="p-2 bg-stone-900 rounded-full hover:text-red-500 hover:bg-white transition-all duration-300 transform hover:scale-110">
                 <Facebook size={18} />
               </Link>
               <Link href="https://wa.me/22675551410" className="p-2 bg-stone-900 rounded-full hover:text-emerald-500 hover:bg-white transition-all duration-300 transform hover:scale-110">
@@ -140,7 +140,7 @@ const Footer: React.FC = () => {
         </motion.div>
 
         {/* --- Newsletter Integrée --- */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -182,7 +182,7 @@ const Footer: React.FC = () => {
         </motion.div>
 
         {/* --- Copyright --- */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

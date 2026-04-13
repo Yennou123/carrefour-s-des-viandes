@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Head from "next/head";
+import SEO from "@/components/SEO";
 import { useRouter } from "next/router";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
@@ -162,9 +162,10 @@ const CheckoutPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-stone-50">
-      <Head>
-        <title>Finaliser ma commande | Carrefour des Viandes</title>
-      </Head>
+      <SEO 
+        title="Finaliser ma commande" 
+        description="Renseignez vos informations de livraison pour finaliser votre commande de viandes d'exception."
+      />
 
       <main className="max-w-6xl mx-auto px-4 py-12 md:py-20">
         {/* Breadcrumbs / Header */}

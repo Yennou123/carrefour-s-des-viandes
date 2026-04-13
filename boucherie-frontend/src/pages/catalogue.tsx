@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Head from "next/head";
+import SEO from "@/components/SEO";
 import { useRouter } from "next/router";
 import ProductCard, { Product } from "@/components/products/ProductCard";
 import ProductFilters from "@/components/products/ProductFilters";
@@ -92,7 +92,7 @@ const CataloguePage: React.FC = () => {
       params.limit = 12;
 
       const response = await api.get("/products", { params });
-      
+
       const { products: fetchedRows, totalCount: count, totalPages: pages } = response.data;
 
       const fetchedProducts: Product[] = fetchedRows.map((p: any) => ({
@@ -162,9 +162,10 @@ const CataloguePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB]">
-      <Head>
-        <title>Catalogue | La Boucherie</title>
-      </Head>
+      <SEO 
+        title="Notre Catalogue de Viandes - Sélection Fraîche" 
+        description="Explorez notre sélection complète de viandes bovines, ovines, volailles et charcuteries. Des produits frais, tracés et préparés avec passion par nos experts."
+      />
 
       {/* --- BANNIÈRE HEADER --- */}
       <div className="bg-stone-900 text-white py-12 mb-8">
@@ -186,7 +187,7 @@ const CataloguePage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 pb-20 relative">
         {/* --- MOBILE FILTER BUTTON --- */}
         <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
-          <button 
+          <button
             onClick={() => setShowMobileFilters(true)}
             className="bg-red-800 text-white px-8 py-4 rounded-full font-black shadow-2xl flex items-center gap-3 active:scale-95 transition-transform"
           >
@@ -196,22 +197,22 @@ const CataloguePage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
+
           {/* --- SIDEBAR FILTRES (Desktop) --- */}
           <aside className="hidden lg:block lg:col-span-3">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="sticky top-24 bg-white p-7 rounded-[2rem] border border-stone-200 shadow-sm"
             >
-                <ProductFilters
-                  categories={allCategories}
-                  currentFilters={filters}
-                  onFilterChange={handleFilterChange}
-                  onClearFilters={handleClearFilters}
-                  disabled={loading}
-                />
+              <ProductFilters
+                categories={allCategories}
+                currentFilters={filters}
+                onFilterChange={handleFilterChange}
+                onClearFilters={handleClearFilters}
+                disabled={loading}
+              />
             </motion.div>
           </aside>
 
@@ -219,7 +220,7 @@ const CataloguePage: React.FC = () => {
           <AnimatePresence>
             {showMobileFilters && (
               <>
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -249,7 +250,7 @@ const CataloguePage: React.FC = () => {
                     />
                   </div>
                   <div className="p-6 border-t border-stone-100 italic">
-                    <button 
+                    <button
                       onClick={() => setShowMobileFilters(false)}
                       className="w-full bg-stone-900 text-white py-4 rounded-2xl font-bold"
                     >
@@ -277,7 +278,7 @@ const CataloguePage: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-bold text-red-800 mb-2">Oups !</h3>
                 <p className="text-red-600 mb-6">{error}</p>
-                <button 
+                <button
                   onClick={fetchProducts}
                   className="bg-red-800 text-white px-6 py-2 rounded-full font-bold hover:bg-red-900 transition shadow-lg"
                 >
@@ -301,15 +302,15 @@ const CataloguePage: React.FC = () => {
             ) : (
               <>
                 <AnimatePresence mode="popLayout">
-                  <motion.div 
+                  <motion.div
                     layout
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
                   >
                     {products.map((product) => (
-                      <motion.div 
-                        key={product.id} 
+                      <motion.div
+                        key={product.id}
                         layout
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -322,7 +323,7 @@ const CataloguePage: React.FC = () => {
                   </motion.div>
                 </AnimatePresence>
 
-                <Pagination 
+                <Pagination
                   currentPage={filters.page}
                   totalPages={totalPages}
                   onPageChange={handlePageChange}

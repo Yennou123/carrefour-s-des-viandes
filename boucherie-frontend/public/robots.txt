@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin and private pages
+Disallow: /admin/
+Disallow: /profil/
+Disallow: /checkout/
+
+Sitemap: https://carrefour-s-des-viandes-9ahs.vercel.app/sitemap.xml

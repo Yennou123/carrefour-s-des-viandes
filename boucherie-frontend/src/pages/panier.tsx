@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Head from "next/head";
+import SEO from "@/components/SEO";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
@@ -67,9 +67,10 @@ const CartPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] pb-20">
-      <Head>
-        <title>Mon Panier | La Boucherie</title>
-      </Head>
+      <SEO 
+        title="Mon Panier - Carrefour'S des Viandes" 
+        description="Consultez et validez votre sélection de viandes d'exception avant de passer commande. Livraison rapide à Ouagadougou."
+      />
 
       {/* --- HEADER --- */}
       <div className="bg-stone-900 text-white py-12 mb-10">

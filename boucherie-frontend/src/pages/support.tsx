@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Head from "next/head";
+import SEO from "@/components/SEO";
 import useSWR from "swr";
 import { useAuth } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
@@ -50,10 +50,10 @@ const SupportPage: React.FC = () => {
     setLoadingSubmit(true);
     try {
       const response = await api.post(API_SUPPORT_URL, { subject, message, priority });
-      
+
       setSubmitMessage({ type: "success", text: response.data.message });
-      setSubject(""); 
-      setMessage(""); 
+      setSubject("");
+      setMessage("");
       setPriority("Low");
 
       // OPTIMISATION : Rafraîchir la liste des tickets immédiatement
@@ -89,16 +89,17 @@ const SupportPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] pb-12">
-      <Head>
-        <title>Support Client | La Boucherie</title>
-      </Head>
+      <SEO 
+        title="Support Client & Aide" 
+        description="Une question sur nos viandes ou votre commande ? Notre équipe vous répond. Créez un ticket de support pour une assistance personnalisée."
+      />
 
       {/* --- HERO HEADER --- */}
       <section className="relative bg-stone-900 text-white pt-16 pb-24 px-6 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-red-800 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-red-800 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
         </div>
-        
+
         <div className="relative max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-red-800/20 rounded-2xl mb-6 backdrop-blur-sm border border-red-800/30">
             <ShieldQuestion className="w-8 h-8 text-red-500" />
@@ -112,12 +113,12 @@ const SupportPage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* --- FORMULAIRE --- */}
           <div className="lg:col-span-5 bg-white rounded-3xl shadow-xl shadow-stone-200/50 border border-stone-100 p-8">
             <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 bg-red-50 text-red-700 rounded-lg"><MessageSquare size={20}/></div>
-                <h2 className="text-xl font-bold text-stone-900">Nouveau ticket</h2>
+              <div className="p-2 bg-red-50 text-red-700 rounded-lg"><MessageSquare size={20} /></div>
+              <h2 className="text-xl font-bold text-stone-900">Nouveau ticket</h2>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -158,10 +159,9 @@ const SupportPage: React.FC = () => {
               </div>
 
               {submitMessage && (
-                <div className={`p-4 rounded-xl text-sm font-medium flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 ${
-                  submitMessage.type === "success" ? "bg-emerald-50 text-emerald-700 border border-emerald-100" : "bg-red-50 text-red-700 border border-red-100"
-                }`}>
-                  {submitMessage.type === "success" ? <Send size={16}/> : <AlertTriangle size={16}/>}
+                <div className={`p-4 rounded-xl text-sm font-medium flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 ${submitMessage.type === "success" ? "bg-emerald-50 text-emerald-700 border border-emerald-100" : "bg-red-50 text-red-700 border border-red-100"
+                  }`}>
+                  {submitMessage.type === "success" ? <Send size={16} /> : <AlertTriangle size={16} />}
                   {submitMessage.text}
                 </div>
               )}
@@ -180,11 +180,11 @@ const SupportPage: React.FC = () => {
           {/* --- HISTORIQUE --- */}
           <div className="lg:col-span-7 bg-white rounded-3xl shadow-xl shadow-stone-200/50 border border-stone-100 p-8">
             <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-3">
-                    <div className="p-2 bg-stone-100 text-stone-700 rounded-lg"><History size={20}/></div>
-                    <h2 className="text-xl font-bold text-stone-900">Suivi de mes tickets</h2>
-                </div>
-                {!loadingTickets && tickets && <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">{tickets.length} Ticket(s)</span>}
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-stone-100 text-stone-700 rounded-lg"><History size={20} /></div>
+                <h2 className="text-xl font-bold text-stone-900">Suivi de mes tickets</h2>
+              </div>
+              {!loadingTickets && tickets && <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">{tickets.length} Ticket(s)</span>}
             </div>
 
             {loadingTickets ? (
@@ -207,18 +207,18 @@ const SupportPage: React.FC = () => {
                         {ticket.status.replace('_', ' ')}
                       </span>
                     </div>
-                    
+
                     <div className="flex flex-wrap items-center gap-4 text-xs text-stone-400 font-medium mb-4">
-                      <div className="flex items-center gap-1"><Clock size={12}/> {new Date(ticket.createdAt).toLocaleDateString()}</div>
+                      <div className="flex items-center gap-1"><Clock size={12} /> {new Date(ticket.createdAt).toLocaleDateString()}</div>
                       <div className="flex items-center gap-1">
-                        {ticket.priority === "High" && <AlertTriangle size={12} className="text-red-500"/>}
+                        {ticket.priority === "High" && <AlertTriangle size={12} className="text-red-500" />}
                         Priorité {ticket.priority}
                       </div>
                     </div>
 
                     {ticket.admin_response && (
                       <div className="relative mt-4 pl-6 py-4 rounded-xl bg-emerald-50/50 border-l-4 border-emerald-400">
-                        <div className="absolute top-2 right-4 text-emerald-200"><MessageSquare size={40} className="opacity-20"/></div>
+                        <div className="absolute top-2 right-4 text-emerald-200"><MessageSquare size={40} className="opacity-20" /></div>
                         <p className="text-xs font-black text-emerald-800 uppercase tracking-widest mb-1">Réponse Officielle</p>
                         <p className="text-sm text-emerald-700 italic leading-relaxed">
                           {ticket.admin_response}

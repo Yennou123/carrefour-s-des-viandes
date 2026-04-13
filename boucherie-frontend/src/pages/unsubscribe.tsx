@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import api from '@/lib/axios';
+import SEO from '@/components/SEO';
 
 export default function Unsubscribe() {
   const router = useRouter();
@@ -18,6 +19,10 @@ export default function Unsubscribe() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-stone-100">
+      <SEO 
+        title="Désabonnement Newsletter" 
+        description="Gérez votre abonnement à la newsletter de Carrefour'S des Viandes."
+      />
       <div className="p-8 bg-white shadow-xl rounded-lg text-center">
         <h1 className="text-2xl font-bold text-red-800 mb-4">Désabonnement</h1>
         <p className="text-stone-600">{message}</p>

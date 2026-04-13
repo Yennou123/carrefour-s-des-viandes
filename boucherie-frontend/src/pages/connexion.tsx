@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
+import SEO from "@/components/SEO";
 import { useAuth } from '@/context/AuthContext';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
@@ -86,9 +86,10 @@ const ConnexionPage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-stone-50 flex items-center justify-center p-10">
-            <Head>
-                <title>{isLoginMode ? 'Connexion' : 'Inscription'} | Carrefour des Viandes</title>
-            </Head>
+            <SEO 
+                title={isLoginMode ? 'Connexion' : 'Inscription'} 
+                description="Accédez à votre espace Carrefour'S des Viandes pour gérer vos commandes et vos préférences."
+            />
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}

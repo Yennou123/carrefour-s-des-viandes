@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock3, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import useSWR from 'swr';
 import api from '@/lib/axios';
+import SEO from '@/components/SEO';
 
 const fetcher = (url: string) => api.get(url).then((res) => res.data);
 
@@ -62,6 +63,10 @@ const ContactPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] py-16 px-4">
+      <SEO 
+        title="Contact & Localisation - Ouagadougou" 
+        description="Besoin d'un conseil ou d'une commande spéciale ? Retrouvez Carrefour'S des Viandes à Ouagadougou ou contactez-nous directement."
+      />
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-stone-900 mb-6 italic">
@@ -77,23 +82,23 @@ const ContactPage: React.FC = () => {
           <div className="lg:col-span-4">
             <div className="bg-stone-900 p-8 rounded-[2rem] text-white h-full shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-red-800/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-              
+
               <h2 className="text-2xl font-bold mb-8 relative">Nos coordonnées</h2>
-              
+
               <div className="space-y-8 relative">
                 <div className="flex items-start gap-4 group">
                   <div className="p-3 bg-stone-800 rounded-xl text-red-500 group-hover:bg-red-800 group-hover:text-white transition-colors">
-                    <MapPin size={24}/>
+                    <MapPin size={24} />
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-stone-400 uppercase tracking-widest">Adresse</h4>
-                    <p className="mt-1 font-medium italic">Carrefour&apos;S des Viandes<br/>Ouagadougou, Burkina Faso</p>
+                    <p className="mt-1 font-medium italic">Carrefour&apos;S des Viandes<br />Ouagadougou, Burkina Faso</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4 group">
                   <div className="p-3 bg-stone-800 rounded-xl text-red-500 group-hover:bg-red-800 group-hover:text-white transition-colors">
-                    <Phone size={24}/>
+                    <Phone size={24} />
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-stone-400 uppercase tracking-widest">Téléphone</h4>
@@ -103,7 +108,7 @@ const ContactPage: React.FC = () => {
 
                 <div className="flex items-start gap-4 group">
                   <div className="p-3 bg-stone-800 rounded-xl text-red-500 group-hover:bg-red-800 group-hover:text-white transition-colors">
-                    <Mail size={24}/>
+                    <Mail size={24} />
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-stone-400 uppercase tracking-widest">Email</h4>
@@ -114,11 +119,11 @@ const ContactPage: React.FC = () => {
 
               <div className="mt-12 pt-8 border-t border-stone-800">
                 <div className="flex items-center gap-3 text-red-500 mb-4">
-                  <Clock3 size={20}/> 
+                  <Clock3 size={20} />
                   <span className="font-bold uppercase text-xs tracking-tighter">Horaires d&apos;ouverture</span>
                 </div>
                 <p className="text-stone-400 text-sm leading-relaxed">
-                  Mardi - Samedi : <span className="text-white">08h00 - 19h00</span><br/>
+                  Mardi - Samedi : <span className="text-white">08h00 - 19h00</span><br />
                   Dimanche - Lundi : <span className="text-red-500 font-bold">Fermé</span>
                 </p>
               </div>
@@ -131,34 +136,34 @@ const ContactPage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-bold text-stone-700 mb-2 ml-1">Nom complet</label>
-                  <input 
-                    type="text" 
-                    value={firstName} 
-                    onChange={(e) => setName(e.target.value)} 
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setName(e.target.value)}
                     required
                     placeholder="Jean Dupont"
-                    className="w-full bg-stone-50 border-2 border-transparent rounded-2xl p-4 focus:bg-white focus:border-red-800/20 focus:ring-0 transition-all outline-none" 
+                    className="w-full bg-stone-50 border-2 border-transparent rounded-2xl p-4 focus:bg-white focus:border-red-800/20 focus:ring-0 transition-all outline-none"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-stone-700 mb-2 ml-1">Adresse Email</label>
-                  <input 
-                    type="email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="jean@email.com"
-                    className="w-full bg-stone-50 border-2 border-transparent rounded-2xl p-4 focus:bg-white focus:border-red-800/20 focus:ring-0 transition-all outline-none" 
+                    className="w-full bg-stone-50 border-2 border-transparent rounded-2xl p-4 focus:bg-white focus:border-red-800/20 focus:ring-0 transition-all outline-none"
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-bold text-stone-700 mb-2 ml-1">Votre Message</label>
-                <textarea 
-                  rows={5} 
-                  value={message} 
-                  onChange={(e) => setMessage(e.target.value)} 
+                <textarea
+                  rows={5}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   required
                   placeholder="Comment pouvons-nous vous aider ?"
                   className="w-full bg-stone-50 border-2 border-transparent rounded-2xl p-4 focus:bg-white focus:border-red-800/20 focus:ring-0 transition-all outline-none resize-none"
@@ -166,11 +171,10 @@ const ContactPage: React.FC = () => {
               </div>
 
               {status.msg && (
-                <div className={`p-4 rounded-2xl flex items-center gap-3 font-medium transition-all ${
-                  status.type === 'success' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 
-                  status.type === 'error' ? 'bg-red-50 text-red-700 border border-red-100' : 
-                  'bg-stone-100 text-stone-600'
-                }`}>
+                <div className={`p-4 rounded-2xl flex items-center gap-3 font-medium transition-all ${status.type === 'success' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' :
+                    status.type === 'error' ? 'bg-red-50 text-red-700 border border-red-100' :
+                      'bg-stone-100 text-stone-600'
+                  }`}>
                   {status.type === 'loading' && <Loader2 size={18} className="animate-spin" />}
                   {status.type === 'success' && <CheckCircle2 size={18} />}
                   {status.type === 'error' && <AlertCircle size={18} />}
@@ -178,14 +182,14 @@ const ContactPage: React.FC = () => {
                 </div>
               )}
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={status.type === 'loading'}
                 className="w-full md:w-auto flex items-center justify-center gap-3 bg-red-800 text-white px-10 py-5 rounded-2xl font-bold hover:bg-stone-900 transition-all shadow-lg shadow-red-900/10 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status.type === 'loading' ? 'Envoi...' : (
                   <>
-                    <Send size={18}/>
+                    <Send size={18} />
                     Envoyer le message
                   </>
                 )}

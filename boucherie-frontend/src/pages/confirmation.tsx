@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import Head from 'next/head';
+import SEO from "@/components/SEO";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { CheckCircle2, ShoppingBag, ArrowRight, Truck, Utensils, ShieldCheck } from 'lucide-react';
@@ -19,9 +19,10 @@ const ConfirmationPage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-stone-50 flex items-center justify-center p-4">
-            <Head>
-                <title>Merci pour votre confiance | Carrefour des Viandes</title>
-            </Head>
+            <SEO 
+                title="Merci pour votre confiance" 
+                description="Votre commande a été enregistrée avec succès. Merci d'avoir choisi Carrefour'S des Viandes."
+            />
 
             <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}

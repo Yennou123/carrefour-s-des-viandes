@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useMemo } from "react";
-import Head from "next/head";
 import useSWR from "swr";
 import ProductCard, { Product } from "@/components/products/ProductCard";
 import HeroSlider from "@/components/HeroSlider";
@@ -12,6 +11,7 @@ import { Loader, Sparkles, Percent, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearch } from "@/context/SearchContext";
 import Link from "next/link";
+import SEO from "@/components/SEO";
 
 /* -----------------------------------------------------------
    SECTION : PRODUITS (Identique au design original)
@@ -37,16 +37,16 @@ const ProductSection: React.FC<{
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.8, ease: "easeOut" as any } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" as any }
     }
   };
 
   return (
     <section className="py-20 border-b border-stone-100 last:border-0 overflow-hidden">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -55,8 +55,8 @@ const ProductSection: React.FC<{
       >
         <div className="flex items-start gap-4">
           <div className={`p-3 rounded-2xl ${accentColor} bg-opacity-10 shadow-sm`}>
-            {React.isValidElement(icon) && React.cloneElement(icon as React.ReactElement<any>, { 
-              className: `w-8 h-8 ${accentColor.replace('bg-', 'text-')}` 
+            {React.isValidElement(icon) && React.cloneElement(icon as React.ReactElement<any>, {
+              className: `w-8 h-8 ${accentColor.replace('bg-', 'text-')}`
             })}
           </div>
           <div>
@@ -66,7 +66,7 @@ const ProductSection: React.FC<{
             <p className="text-stone-500 font-medium mt-1">{subtitle}</p>
           </div>
         </div>
-        
+
         <Link href="/catalogue" className="group flex items-center gap-2 text-sm font-bold text-stone-400 hover:text-red-700 transition-colors">
           Explorer la sélection <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
         </Link>
@@ -88,10 +88,10 @@ const ProductSection: React.FC<{
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {products.map((product) => (
-                <motion.div 
-                  key={product.id} 
+                <motion.div
+                  key={product.id}
                   variants={itemVariants}
-                  layout 
+                  layout
                   whileHover={{ y: -12, transition: { duration: 0.3 } }}
                 >
                   <ProductCard product={product} />
@@ -99,9 +99,9 @@ const ProductSection: React.FC<{
               ))}
             </motion.div>
           ) : (
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              whileInView={{ opacity: 1 }} 
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="bg-stone-50 rounded-3xl py-20 text-center border-2 border-dashed border-stone-200"
             >
@@ -145,7 +145,7 @@ export default function Home() {
   const categories = useMemo(() => {
     const products = allProductsData?.products || [];
     if (products.length === 0) return [];
-    
+
     const map = new Map();
     products.forEach((p: Product) => {
       if (p.category && !map.has(p.category)) {
@@ -161,17 +161,17 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <Head>
-        <title>Carrefour&apos;S des Viandes | Boucherie d&apos;Excellence</title>
-        <meta name="description" content="Découvrez l'excellence du fait maison : viandes fraîches, charcuteries artisanales et volailles de premier choix." />
-      </Head>
+      <SEO 
+        title="Boucherie d'Excellence à Ouagadougou" 
+        description="Découvrez Carrefour'S des Viandes - Votre boucherie artisanale à Ouagadougou. Viandes bovines, ovines et volailles de premier choix, fraîcheur garantie."
+      />
 
       <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2">
         <HeroSlider />
       </section>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <ProductSection
           title="Nouveaux Arrivages"
           subtitle="Les meilleures pièces fraîchement arrivées dans notre atelier."
@@ -197,11 +197,11 @@ export default function Home() {
 
         <div className="space-y-12">
           <CategoriesSection categories={categories} />
-          
+
           <div className="py-12 bg-stone-900 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 rounded-[3rem] md:rounded-[5rem] overflow-hidden shadow-2xl">
             <StatsSection />
           </div>
-          
+
           <TestimonialsSection />
         </div>
       </main>
