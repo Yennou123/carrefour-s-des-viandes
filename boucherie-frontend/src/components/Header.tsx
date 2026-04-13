@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
 
     // Détection du scroll pour changer l'apparence
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
+        const handleScroll = () => setScrolled(window.scrollY > 60);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -65,9 +65,9 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
     }, []);
 
     return (
-        <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "shadow-xl" : "shadow-md"}`}>
+        <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "shadow-xl backdrop-blur-sm bg-white/95" : "shadow-md bg-white"}`}>
             {/* --- BARRE PRINCIPALE --- */}
-            <div className={`bg-white transition-all duration-300 ${scrolled ? "py-2" : "py-4 md:py-6"}`}>
+            <div className="bg-transparent transition-all duration-300 py-3 md:py-4">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16 md:h-20">
 
