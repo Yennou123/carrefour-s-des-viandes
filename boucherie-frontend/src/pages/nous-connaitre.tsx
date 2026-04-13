@@ -150,6 +150,7 @@ const AboutPage: React.FC = () => {
               </div>
             </motion.div>
           </div>
+        </div>
       </section>
 
       {/* --- NOS VALEURS --- */}
