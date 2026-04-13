@@ -149,15 +149,15 @@ exports.login = async (req, res) => {
 
     // 3. Échec : On renvoie 400 Bad Request
     if (!user || !passwordIsValid) {
-      return res.status(400).json({ 
-        message: "Identifiants incorrects. Veuillez réessayer." 
+      return res.status(400).json({
+        message: "Identifiants incorrects. Veuillez réessayer."
       });
     }
 
     // 4. Compte bloqué
     if (user.isBlocked) {
-      return res.status(403).json({ 
-        message: "Votre compte est suspendu. Contactez le support." 
+      return res.status(403).json({
+        message: "Votre compte est suspendu. Contactez le support."
       });
     }
 
@@ -165,7 +165,7 @@ exports.login = async (req, res) => {
     const token = jwt.sign(
       { id: user.id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: '72h' }
     );
 
     // Initialisation panier si inexistant
@@ -183,8 +183,8 @@ exports.login = async (req, res) => {
 
   } catch (error) {
     console.error("🔥 Erreur Login:", error);
-    return res.status(500).json({ 
-      message: "Une erreur technique est survenue sur nos serveurs." 
+    return res.status(500).json({
+      message: "Une erreur technique est survenue sur nos serveurs."
     });
   }
 };

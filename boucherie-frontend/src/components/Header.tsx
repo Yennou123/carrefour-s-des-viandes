@@ -79,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
                                     alt="Le Carrefour'S Des Viandes"
                                     width={80}
                                     height={80}
-                                    className="object-contain drop-shadow-sm" 
+                                    className="object-contain drop-shadow-sm"
                                     priority
                                 />
                             </div>
@@ -93,6 +93,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
                         <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10">
                             {[
                                 { href: "/catalogue", label: "Catalogue" },
+                                { href: "/nous-connaitre", label: "Nous connaître" },
                                 { href: "/support", label: "Aide", icon: <Headset className="w-4 h-4" /> },
                                 { href: "/contact", label: "Contact", icon: <Phone className="w-4 h-4" /> },
                             ].map(({ href, label, icon }) => (
@@ -204,7 +205,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
                             onClick={() => setMenuOpen(false)}
                             className="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-[100] lg:hidden"
                         />
-                        
+
                         {/* Drawer */}
                         <motion.div
                             initial={{ x: "100%" }}
@@ -240,12 +241,13 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
                                 <nav className="space-y-4">
                                     {[
                                         { href: "/catalogue", label: "Le Catalogue", icon: <Package size={20} /> },
+                                        { href: "/nous-connaitre", label: "Nous Connaître", icon: <User size={20} /> },
                                         { href: "/support", label: "Aide & Support", icon: <Headset size={20} /> },
                                         { href: "/contact", label: "Contact", icon: <Phone size={20} /> },
                                     ].map(({ href, label, icon }) => (
-                                        <Link 
-                                            key={href} 
-                                            href={href} 
+                                        <Link
+                                            key={href}
+                                            href={href}
                                             onClick={() => setMenuOpen(false)}
                                             className="flex items-center gap-4 p-4 bg-stone-50 hover:bg-stone-100 rounded-2xl transition"
                                         >
