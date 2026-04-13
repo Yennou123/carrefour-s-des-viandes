@@ -166,7 +166,7 @@ export default function Home() {
         description="Découvrez Carrefour'S des Viandes - Votre boucherie artisanale à Ouagadougou. Viandes bovines, ovines et volailles de premier choix, fraîcheur garantie."
       />
 
-      <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2">
+      <section className="relative">
         <HeroSlider />
       </section>
 
