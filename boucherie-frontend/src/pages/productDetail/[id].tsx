@@ -124,9 +124,9 @@ const ProductDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] pb-20">
-      <SEO 
-        title={product.name} 
-        description={product.description} 
+      <SEO
+        title={product.name}
+        description={product.description}
         image={product.image_url}
       />
       {/* Header / Nav */}

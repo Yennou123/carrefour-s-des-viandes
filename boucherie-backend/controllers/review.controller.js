@@ -9,7 +9,7 @@ exports.getReviewsByProduct = async (req, res) => {
                 productId: req.params.productId,
                 is_approved: true // N'afficher que les avis approuvés
             },
-            include: [{ model: User, as: 'client', attributes: ['firstName', 'lastName'] }],
+            include: [{ model: User, as: 'client', attributes: ['firstName', 'lastName', 'email'] }],
             order: [['createdAt', 'DESC']]
         });
         res.status(200).json(reviews);
