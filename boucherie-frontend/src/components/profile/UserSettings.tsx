@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import api from "@/lib/axios";
 import { useAuth } from "@/context/AuthContext";
-import { Eye, EyeOff, User, Lock, Loader2, Save, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, User, Lock, Loader2, Save, ShieldCheck, CheckCircle2, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 // On le transforme en composant pour l'intégrer dans ProfilPage
@@ -26,8 +26,12 @@ const UserSettings: React.FC = () => {
   const [loadingInfo, setLoadingInfo] = useState(false);
   const [loadingPassword, setLoadingPassword] = useState(false);
 
+  const [infoMessage, setInfoMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [passwordMessage, setPasswordMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
   const handleUpdateInfo = async (e: React.FormEvent) => {
     e.preventDefault();
+    setInfoMessage(null);
     try {
       setLoadingInfo(true);
       const response = await api.put("/users/profile", { firstName, lastName, email });
@@ -37,9 +41,12 @@ const UserSettings: React.FC = () => {
         setUser({ ...user, ...response.data.user });
       }
 
-      alert(response.data.message);
+      setInfoMessage({ type: "success", text: response.data.message || "Profil mis à jour avec succès !" });
+      
+      // Auto-hide alert
+      setTimeout(() => setInfoMessage(null), 5000);
     } catch (error: any) {
-      alert(error.response?.data?.message || "Erreur lors de la mise à jour.");
+      setInfoMessage({ type: "error", text: error.response?.data?.message || "Erreur lors de la mise à jour." });
     } finally {
       setLoadingInfo(false);
     }
@@ -47,6 +54,7 @@ const UserSettings: React.FC = () => {
 
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault();
+    setPasswordMessage(null);
     try {
       setLoadingPassword(true);
       const response = await api.put("/users/change-password", {
@@ -54,12 +62,15 @@ const UserSettings: React.FC = () => {
         newPassword,
         confirmPassword,
       });
-      alert(response.data.message);
+      setPasswordMessage({ type: "success", text: response.data.message || "Mot de passe modifié avec succès !" });
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
+      
+      // Auto-hide alert
+      setTimeout(() => setPasswordMessage(null), 5000);
     } catch (error: any) {
-      alert(error.response?.data?.message || "Erreur serveur.");
+      setPasswordMessage({ type: "error", text: error.response?.data?.message || "Erreur serveur." });
     } finally {
       setLoadingPassword(false);
     }
@@ -117,6 +128,12 @@ const UserSettings: React.FC = () => {
           </div>
 
           <div className="md:col-span-2 pt-4">
+            {infoMessage && (
+              <div className={`flex items-center gap-2 p-4 mb-4 rounded-xl text-sm font-bold ${infoMessage.type === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
+                {infoMessage.type === "success" ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
+                {infoMessage.text}
+              </div>
+            )}
             <button
               type="submit"
               disabled={loadingInfo}
@@ -210,6 +227,13 @@ const UserSettings: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {passwordMessage && (
+            <div className={`flex items-center gap-2 p-4 rounded-xl text-sm font-bold ${passwordMessage.type === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
+              {passwordMessage.type === "success" ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
+              {passwordMessage.text}
+            </div>
+          )}
 
           <button
             type="submit"
