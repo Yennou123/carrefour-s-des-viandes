@@ -170,20 +170,22 @@ export default function Home() {
         <HeroSlider />
       </section>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="w-full flex justify-center flex-col">
+        {/* Nouveaux Arrivages */}
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ProductSection
+            title="Nouveaux Arrivages"
+            subtitle="Les meilleures pièces fraîchement arrivées dans notre atelier."
+            products={normalize(recentData)}
+            loading={loadingRecent}
+            icon={<Sparkles />}
+            accentColor="bg-amber-500"
+          />
+        </div>
 
-        <ProductSection
-          title="Nouveaux Arrivages"
-          subtitle="Les meilleures pièces fraîchement arrivées dans notre atelier."
-          products={normalize(recentData)}
-          loading={loadingRecent}
-          icon={<Sparkles />}
-          accentColor="bg-amber-500"
-        />
-
-        <div className="relative">
-          <div className="absolute inset-0 bg-red-50/30 -mx-4 sm:-mx-6 lg:-mx-8 pointer-events-none" />
-          <div className="relative">
+        {/* Offres Spéciales - Full Width Background */}
+        <div className="w-full bg-red-50/50">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ProductSection
               title="Offres Spéciales"
               subtitle="Profitez de tarifs d'exception sur une sélection de pièces choisies."
@@ -195,14 +197,23 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="space-y-12">
-          <CategoriesSection categories={categories} />
-
-          <div className="py-12 bg-stone-900 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 rounded-[3rem] md:rounded-[5rem] overflow-hidden shadow-2xl">
-            <StatsSection />
+        <div className="w-full flex justify-center flex-col space-y-12 mt-12">
+          {/* Categories */}
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <CategoriesSection categories={categories} />
           </div>
 
-          <TestimonialsSection />
+          {/* StatsSection - Full Width Background */}
+          <div className="w-full bg-stone-900 py-20 overflow-hidden shadow-2xl">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+              <StatsSection />
+            </div>
+          </div>
+
+          {/* Testimonials already handles its own full-width background */}
+          <div className="w-full">
+            <TestimonialsSection />
+          </div>
         </div>
       </main>
 
