@@ -197,17 +197,15 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full flex justify-center flex-col space-y-12 mt-12">
-          {/* Categories */}
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full flex justify-center flex-col">
+          {/* Categories handles its own full width and paddings */}
+          <div className="w-full">
             <CategoriesSection categories={categories} />
           </div>
 
-          {/* StatsSection - Full Width Background */}
-          <div className="w-full bg-stone-900 py-20 overflow-hidden shadow-2xl">
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
-              <StatsSection />
-            </div>
+          {/* StatsSection handles its own full width, light background, and shadow */}
+          <div className="w-full">
+            <StatsSection />
           </div>
 
           {/* Testimonials already handles its own full-width background */}
