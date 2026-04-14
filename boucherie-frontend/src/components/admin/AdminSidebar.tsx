@@ -35,7 +35,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, onClose }) => {
                 onClick={onClose}
             ></div>
 
-            <div className={`fixed top-0 left-0 h-screen w-64 bg-white text-gray-800 pt-20 flex flex-col z-40 transform transition-transform duration-300 ${sidebarClass}`}>
+            <div className={`fixed top-0 left-0 bottom-0 w-64 bg-white text-gray-800 pt-20 flex flex-col z-40 transform transition-transform duration-300 ${sidebarClass}`}>
                 {/* Logo */}
                 <div className="p-4 text-center border-b border-gray-200 mb-6">
                     <Link href="/admin/dashboard" className="flex items-center justify-center gap-2">
@@ -47,7 +47,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex-grow">
+                <nav className="flex-grow overflow-y-auto">
                     <ul className="space-y-2 px-4">
                         {navItems.map((item) => {
                             const isActive = router.pathname === item.href || router.pathname.startsWith(item.href);
@@ -72,7 +72,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, onClose }) => {
                 </nav>
 
                 {/* Logout */}
-                <div className="p-4 border-t border-gray-200">
+                <div className="p-4 border-t border-gray-200 mt-auto shrink-0">
                     <button
                         onClick={() => { logout() }}
                         className="flex items-center space-x-3 p-3 w-full rounded-lg text-gray-800 hover:bg-gray-100 transition duration-150"
