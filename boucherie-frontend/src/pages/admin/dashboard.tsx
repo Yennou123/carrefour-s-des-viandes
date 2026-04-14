@@ -13,7 +13,17 @@ import {
   Star,
   MessageSquare,
   ArrowRight,
+  TrendingUp,
 } from "lucide-react";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer
+} from "recharts";
 
 const API_ADMIN_DASHBOARD_URL = "/admin/dashboard"; // relative, baseURL gérée par api
 
@@ -35,6 +45,10 @@ interface AdminDashboardData {
       firstName: string;
       lastName: string;
     };
+  }[];
+  salesData?: {
+    date: string;
+    total: number;
   }[];
 }
 
@@ -135,6 +149,40 @@ const AdminDashboardPage: React.FC = () => {
           icon={Star}
           link="/admin/reviews?status=pending"
         />
+      </div>
+
+      {/* Graphique Ventes */}
+      <div className="bg-white p-6 rounded-xl shadow mb-10">
+        <div className="flex items-center gap-2 mb-6">
+          <TrendingUp className="text-red-700 w-6 h-6" />
+          <h2 className="text-xl font-bold">Évolution des Ventes (7 Derniers Jours)</h2>
+        </div>
+        <div className="h-[300px] w-full">
+          {data.salesData && data.salesData.length > 0 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={data.salesData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#b91c1c" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#b91c1c" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="date" tick={{fontSize: 12}} tickFormatter={(val) => new Date(val).toLocaleDateString("fr-FR", {day: "2-digit", month: "short"})} />
+                <YAxis tick={{fontSize: 12}} tickFormatter={(val) => `${val.toLocaleString()} F`} width={80} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+                <Tooltip 
+                  formatter={(value: number) => [`${value.toLocaleString()} FCFA`, "Ventes"]}
+                  labelFormatter={(label) => new Date(label).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}
+                />
+                <Area type="monotone" dataKey="total" stroke="#b91c1c" strokeWidth={3} fillOpacity={1} fill="url(#colorTotal)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex items-center justify-center h-full text-stone-400">
+              Aucune donnée de vente pour cette période.
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Dernières commandes */}

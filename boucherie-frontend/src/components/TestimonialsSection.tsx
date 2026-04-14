@@ -4,6 +4,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import api from "@/lib/axios";
 import { motion, Variants } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import Slider from "react-slick";
 
 interface Review {
   id: number;
@@ -22,7 +23,7 @@ const TestimonialsSection: React.FC = () => {
     try {
       setLoading(true);
       const response = await api.get("/reviews/approved/latest", {
-        params: { limit: 3 },
+        params: { limit: 10 },
       });
       setReviews(response.data || []);
     } catch (error) {
@@ -57,6 +58,27 @@ const TestimonialsSection: React.FC = () => {
       y: 0, 
       transition: { duration: 0.8, ease: "easeOut" as any } 
     },
+  };
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 2, slidesToScroll: 1 }
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 1, slidesToScroll: 1 }
+      }
+    ]
   };
 
   return (
@@ -101,19 +123,20 @@ const TestimonialsSection: React.FC = () => {
           </div>
         ) : (
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
+            className="pb-10" // Padding en bas pour laisser de la place aux dots du slider
           >
-            {reviews.map((review) => (
-              <motion.div
-                key={review.id}
-                variants={itemVariants}
-                whileHover={{ y: -10 }}
-                className="group relative bg-white rounded-[2.5rem] p-10 shadow-xl shadow-stone-200/50 border border-stone-100 flex flex-col h-full transition-all duration-300"
-              >
+            <Slider {...sliderSettings}>
+              {reviews.map((review) => (
+                <div key={review.id} className="p-4 h-full">
+                  <motion.div
+                    variants={itemVariants}
+                    whileHover={{ y: -10 }}
+                    className="group relative bg-white rounded-[2.5rem] p-8 md:p-10 shadow-xl shadow-stone-200/50 border border-stone-100 flex flex-col h-full min-h-[300px] transition-all duration-300 mx-2"
+                  >
                 {/* Icône de citation décorative */}
                 <Quote className="absolute top-8 right-8 text-stone-100 w-12 h-12 -z-0 group-hover:text-red-50 transition-colors" />
 
@@ -153,9 +176,11 @@ const TestimonialsSection: React.FC = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
-        )}
+            </div>
+          ))}
+          </Slider>
+        </motion.div>
+      )}
       </div>
     </section>
   );
