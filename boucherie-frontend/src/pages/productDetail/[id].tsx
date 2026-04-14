@@ -292,7 +292,7 @@ const ProductDetailPage: React.FC = () => {
                       <span className="text-xs text-stone-400">{new Date(r.createdAt).toLocaleDateString('fr-FR')}</span>
                     </div>
                     <p className="text-stone-700 leading-relaxed mb-2 font-medium">&quot;{r.comment}&quot;</p>
-                    <span className="text-xs font-bold text-stone-400 uppercase tracking-tighter">{r.client?.email.split('@')[0]}</span>
+                    <span className="text-xs font-bold text-stone-400 uppercase tracking-tighter">{r.client?.email?.split('@')[0] || 'Client anonyme'}</span>
                   </div>
                 </div>
               ))
