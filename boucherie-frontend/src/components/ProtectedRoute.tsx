@@ -25,15 +25,17 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         if (typeof window !== 'undefined') {
             // Si la vérification est terminée (isAuthenticated est chargé)
             if (!isAuthenticated && !user && !loading) {
-                // Redirection vers la page de connexion, en conservant la page d'origine
-                // dans le paramètre 'redirect' pour y revenir après connexion.
-                router.replace(`/connexion?redirect=${router.asPath}`);
+                // Éviter la boucle de redirection pendant les transitions de page animées
+                if (router.pathname !== '/connexion') {
+                    router.replace(`/connexion?redirect=${router.asPath}`);
+                }
             } else {
                 // L'utilisateur est authentifié, on autorise l'affichage.
                 setIsChecking(false);
             }
         }
-    }, [isAuthenticated, user, loading, router.asPath]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isAuthenticated, user, loading]);
 
     // Si on est en train de vérifier l'état ou si l'utilisateur n'est pas encore autorisé,
     // on affiche un écran de chargement (ou rien).
