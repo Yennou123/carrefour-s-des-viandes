@@ -22,7 +22,8 @@ const ConnexionPage: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const searchParams = useSearchParams();
-    const isExpired = searchParams.get('expired') === 'true';
+    const isExpired = searchParams?.get('expired') === 'true';
+    const redirectUrl = searchParams?.get('redirect');
 
     const { mutate } = useSWRConfig();
     const { user: authUser, login, register, loginWithGoogle } = useAuth();
@@ -36,10 +37,13 @@ const ConnexionPage: React.FC = () => {
 
     useEffect(() => {
         if (authUser && !isSubmitting) {
-            if (authUser.role === 'admin') router.push('/admin/dashboard');
-            else router.push('/');
+            if (authUser.role === 'admin') {
+                router.push('/admin/dashboard');
+            } else {
+                router.push(redirectUrl || '/');
+            }
         }
-    }, [authUser, router, isSubmitting]);
+    }, [authUser, router, isSubmitting, redirectUrl]);
 
     const validatePassword = (pwd: string) => {
         const pwdRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+=[\]{};':"\\|,.<>/?-]).{8,}$/;

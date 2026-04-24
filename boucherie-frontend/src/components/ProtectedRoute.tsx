@@ -33,7 +33,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
                 setIsChecking(false);
             }
         }
-    }, [isAuthenticated, user, router]);
+    }, [isAuthenticated, user, loading, router.asPath]);
 
     // Si on est en train de vérifier l'état ou si l'utilisateur n'est pas encore autorisé,
     // on affiche un écran de chargement (ou rien).
