@@ -74,7 +74,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       replyTo: safeEmail,
-      to: "contact@laboucherie.fr",
+      to: "marc6116ouedraogo@gmail.com",
       subject: `Nouveau message de ${safeName}`,
       html: `
         <h3>Nouveau message</h3>

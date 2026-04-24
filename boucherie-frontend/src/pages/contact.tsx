@@ -63,8 +63,8 @@ const ContactPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] py-16 px-4">
-      <SEO 
-        title="Contact & Localisation - Ouagadougou" 
+      <SEO
+        title="Contact & Localisation - Ouagadougou"
         description="Besoin d'un conseil ou d'une commande spéciale ? Retrouvez Carrefour'S des Viandes à Ouagadougou ou contactez-nous directement."
       />
       <div className="max-w-6xl mx-auto">
@@ -112,7 +112,7 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-stone-400 uppercase tracking-widest">Email</h4>
-                    <a href="mailto:contact@laboucherie.bf" className="mt-1 block font-medium hover:text-red-400 transition break-all">marc6116ouedraogo@gmail.com</a>
+                    <a href="marc6116ouedraogo@gmail.com" className="mt-1 block font-medium hover:text-red-400 transition break-all">marc6116ouedraogo@gmail.com</a>
                   </div>
                 </div>
               </div>
@@ -172,8 +172,8 @@ const ContactPage: React.FC = () => {
 
               {status.msg && (
                 <div className={`p-4 rounded-2xl flex items-center gap-3 font-medium transition-all ${status.type === 'success' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' :
-                    status.type === 'error' ? 'bg-red-50 text-red-700 border border-red-100' :
-                      'bg-stone-100 text-stone-600'
+                  status.type === 'error' ? 'bg-red-50 text-red-700 border border-red-100' :
+                    'bg-stone-100 text-stone-600'
                   }`}>
                   {status.type === 'loading' && <Loader2 size={18} className="animate-spin" />}
                   {status.type === 'success' && <CheckCircle2 size={18} />}
